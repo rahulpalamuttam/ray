@@ -1745,13 +1745,13 @@ int main(int argc, char *argv[]) {
   }
   char redis_primary_addr[16];
   int redis_primary_port;
-  if (!redis_primary_addr_port ||
-      parse_ip_addr_port(redis_primary_addr_port, redis_primary_addr,
-                         &redis_primary_port) == -1) {
-    LOG_FATAL(
-        "specify the primary redis address like 127.0.0.1:6379 with the -r "
-        "switch");
-  }
+//   if (!redis_primary_addr_port ||
+//       parse_ip_addr_port(redis_primary_addr_port, redis_primary_addr,
+//                          &redis_primary_port) == -1) {
+//     LOG_FATAL(
+//         "specify the primary redis address like 127.0.0.1:6379 with the -r "
+//         "switch");
+//   }
   start_server(store_socket_name, manager_socket_name, master_addr, port,
                redis_primary_addr, redis_primary_port);
 }
