@@ -612,14 +612,18 @@ def start_objstore(node_ip_address, redis_address,
                 # value shm_fs_stats.f_bavail is the number of available
                 # blocks.
                 shm_avail = shm_fs_stats.f_bsize * shm_fs_stats.f_bavail
-                if objstore_memory > shm_avail:
-                    print("Warning: Reducing object store memory because "
-                          "/dev/shm has only {} bytes available. You may be "
-                          "able to free up space by deleting files in "
-                          "/dev/shm. If you are inside a Docker container, "
-                          "you may need to pass an argument with the flag "
-                          "'--shm-size' to 'docker run'.".format(shm_avail))
-                    objstore_memory = int(shm_avail * 0.8)
+## WISE EDIT
+# Currently Docker swarm does not support using the shm size.
+# Turning this off for now, as the default shm size is much too low.
+
+#                 if objstore_memory > shm_avail:
+#                     print("Warning: Reducing object store memory because "
+#                           "/dev/shm has only {} bytes available. You may be "
+#                           "able to free up space by deleting files in "
+#                           "/dev/shm. If you are inside a Docker container, "
+#                           "you may need to pass an argument with the flag "
+#                           "'--shm-size' to 'docker run'.".format(shm_avail))
+#                     objstore_memory = int(shm_avail * 0.8)
             finally:
                 os.close(shm_fd)
         else:
